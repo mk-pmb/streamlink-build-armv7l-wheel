@@ -12,12 +12,14 @@ Trying to build a streamlink wheel for armv7l (armhf) on GitHub Actions.
 Roadmap
 -------
 
-* [ ] Set up build process that yields a streamlink wheel for the same
-  architecture as we're building on. That way, I could build it on the
-  target machine itself, even if it takes much longer there.
-* [ ] Try and use docker's `--platform` option to make x86_64 docker
-  build an armhf wheel.
-* [ ] Try and make it the armhf build work on GitHub Actions.
+* [x] Set up build process <del>that yields a streamlink wheel</del>
+  for the same architecture as we're building on. That way, I could build
+  it on the target machine itself, even if it takes much longer there.
+* [x] Try and use docker's `--platform` option to make x86_64 docker
+  build <ins>in</ins> an armhf <del>wheel</del><ins>container</ins>.
+* [x] Try and make the armhf build work on GitHub Actions.
+* [ ] Figure out how to have it actually make a wheel.
+* [ ] Figure out how to obtain that wheel.
 
 
 

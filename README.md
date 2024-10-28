@@ -18,6 +18,7 @@ Roadmap
 * [x] Use docker's `--platform` option to make x86_64 docker
   build <ins>in</ins> an armhf <del>wheel</del><ins>container</ins>.
 * [x] Make the armhf build work on GitHub Actions.
+* [ ] Figure out how to include the dependencies.
 
 
 

@@ -56,7 +56,6 @@ function makewheel_init () {
   cd -- "$ORIG_WD" || return $?
 
   step find_files tmp.files.workspace.txt .
-  step find_files tmp.files.ephem-wheel.txt '/tmp/pip-ephem-wheel-cache-*'
 
   echo
   echo D: "Core action return value was $RV"
@@ -88,12 +87,33 @@ function makewheel_fallible_core () {
 
     build # https://pypi.org/project/build/
     setuptools
+    'wagon[dist]'
     wheel
     )
   step "${STEP[@]}" || return $?
 
-  step python3 -m build --wheel --installer pip || return $?
-  step sha512sum --binary -- "$PWD"/dist/* || return $?
+  step wagon create -r dev-requirements.txt . || return $?
+
+  #mkdir --parents -- $(echo $(echo '
+  #  tmp.build
+  #  tmp.cache-dir
+  #  tmp.packages
+  #  tmp.wheels
+  #  ') ) || return $?
+
+  #STEP=(
+  #  pip3
+  #  wheel
+  #  --cache-dir tmp.cache
+  #  --no-color
+  #  --prefer-binary
+  #  --requirement dev-requirements.txt
+  #  --src .
+  #  --build tmp.build
+  #  --wheel-dir .
+  #  .
+  #  )
+  #step "${STEP[@]}" || return $?
 
   # step which streamlink
   # step streamlink --version
